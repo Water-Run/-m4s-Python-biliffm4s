@@ -1,0 +1,1 @@
+ffmpeg -i audio.m4s -i video.m4s -codec copy 1.mp4
