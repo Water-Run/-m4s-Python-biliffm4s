@@ -4,6 +4,7 @@
 
 `biliffm4s`是`bilibili-ffmpeg-m4s(to-mp4)`的缩写.顾名思义,该项目提供了一个Python库,将Android手机哔哩哔哩缓存的视频(为`.m4s`)格式转化为`.mp4`格式.文件转化功能由`ffmpeg`实现,见[github链接](https://github.com/FFmpeg/FFmpeg)    
 项目已经发布在PyPi上.因此,使用`pip install biliffm4s`即可使用.  
+> 注:`ffmpeg`已经包含在了项目中,因此可以开箱即用.暂时只支持Windows.  
 
 ## 使用  
 

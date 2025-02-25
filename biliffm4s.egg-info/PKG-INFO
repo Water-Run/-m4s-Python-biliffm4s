@@ -1,4 +1,4 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.2
 Name: biliffm4s
 Version: 1.0
 Summary: biliffm4s: A tool to merge Bilibili cached .m4s files into .mp4
@@ -16,6 +16,14 @@ Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
 Requires-Python: >=3.6
 Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-python
+Dynamic: summary
 
 # biliffm4s: Android哔哩哔哩缓存视频合并  
 
