@@ -36,7 +36,7 @@ def _get_ffmpeg_path() -> str:
     elif system == "linux":  # Linux 系统
         ffmpeg_path = os.path.join(base_dir, "ffmpeg", "linux", "ffmpeg")
     elif system == "darwin":  # macOS 系统
-        ffmpeg_path = os.path.join(base_dir, "ffmpeg", "mac", "ffmpeg_mac")
+        ffmpeg_path = os.path.join(base_dir, "ffmpeg", "mac", "ffmpeg")
     else:  # 不支持的系统
         raise OSError(f"不支持的操作系统: {system}")
 
