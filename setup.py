@@ -1,4 +1,12 @@
 from setuptools import setup, find_packages
+import platform
+
+if platform.architecture()[0] != '64bit':
+    raise RuntimeError("biliffm4s 仅支持 64 位系统。")
+
+supported_systems = ['Windows', 'Linux', 'Darwin']
+if platform.system() not in supported_systems:
+    raise RuntimeError("biliffm4s 仅支持 Windows、Linux 和 macOS 系统。")
 
 setup(
     name='biliffm4s',
@@ -24,7 +32,11 @@ setup(
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
         'License :: OSI Approved :: MIT License',
+        'Operating System :: Microsoft :: Windows',
+        'Operating System :: POSIX :: Linux',
+        'Operating System :: MacOS',
         'Operating System :: OS Independent',
+        'Environment :: Console',
     ],
     python_requires='>=3.6',
 )
