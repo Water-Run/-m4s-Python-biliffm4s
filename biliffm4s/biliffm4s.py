@@ -1,9 +1,9 @@
 r"""
 :author: WaterRun
-:date: 2025-02-25
+:date: 2025-02-27
 :description: biliffm4s的源码
 :file: biliffm4s.py
-:version: 1.0
+:version: 1.1
 """
 
 import subprocess
@@ -79,3 +79,11 @@ def convert(video: str = 'video.m4s', audio: str = 'audio.m4s', output: str = 'o
     except Exception as e:
         print(f"发生异常: {e}")
         return False
+
+
+def combine(directory: str, output: str = 'output.mp4') -> bool:
+    ...
+
+
+def auto_console(blue: bool = False):
+    ...

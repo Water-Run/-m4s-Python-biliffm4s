@@ -1,0 +1,2 @@
+biliffm4s/ffmpeg/linux/ffmpeg filter=lfs diff=lfs merge=lfs -text
+biliffm4s/ffmpeg/mac/ffmpeg filter=lfs diff=lfs merge=lfs -text
