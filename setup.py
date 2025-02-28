@@ -1,12 +1,25 @@
 from setuptools import setup, find_packages
 import platform
+import os
 
+# 检查系统架构是否为 64 位
 if platform.architecture()[0] != '64bit':
     raise RuntimeError("biliffm4s 仅支持 64 位系统。")
 
+# 检查系统是否支持
 supported_systems = ['Windows', 'Linux', 'Darwin']
-if platform.system() not in supported_systems:
+current_system = platform.system()
+if current_system not in supported_systems:
     raise RuntimeError("biliffm4s 仅支持 Windows、Linux 和 macOS 系统。")
+
+# 动态生成 ffmpeg 文件的路径
+def get_ffmpeg_files():
+    ffmpeg_dir = os.path.join('biliffm4s', 'ffmpeg')
+    file_list = []
+    for root, _, files in os.walk(ffmpeg_dir):
+        for file in files:
+            file_list.append(os.path.relpath(os.path.join(root, file), 'biliffm4s'))
+    return file_list
 
 setup(
     name='biliffm4s',
@@ -14,7 +27,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     package_data={
-        'biliffm4s': ['ffmpeg/*']
+        'biliffm4s': get_ffmpeg_files(),  # 动态添加 ffmpeg 文件
     },
     install_requires=[],
     author='WaterRun',

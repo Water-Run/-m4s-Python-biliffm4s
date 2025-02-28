@@ -101,7 +101,7 @@ def convert(video: str = 'video.m4s', audio: str = 'audio.m4s', output: str = 'o
 
 def combine(directory: str, output: str = 'output.mp4') -> bool:
     r"""
-    自动对指定目录进行查找 video.m4s 和 audio.m4s，并合并为 .mp4
+    自动对指定目录进行递归查找 video.m4s 和 audio.m4s，并合并为 .mp4
     :param directory: 查找的路径
     :param output: 输出的MP4文件路径 (支持绝对路径或相对路径，必须为 .mp4)
     :return: 执行情况 (True 表示成功, False 表示失败)
@@ -116,21 +116,30 @@ def combine(directory: str, output: str = 'output.mp4') -> bool:
         print(f"错误: 目录不存在: {directory}")
         return False
 
-    # 查找 video.m4s 和 audio.m4s
-    video_files = [f for f in os.listdir(directory) if f.lower() == 'video.m4s']
-    audio_files = [f for f in os.listdir(directory) if f.lower() == 'audio.m4s']
+    # 初始化变量以存储文件路径
+    video_path = None
+    audio_path = None
 
-    if len(video_files) != 1:
-        print(f"错误: 找到 {len(video_files)} 个 video.m4s 文件，请确保目录中有且仅有一个 video.m4s 文件。")
+    # 递归遍历目录，查找 video.m4s 和 audio.m4s
+    for root, _, files in os.walk(directory):
+        for file in files:
+            if file.lower() == 'video.m4s':
+                video_path = os.path.join(root, file)
+            elif file.lower() == 'audio.m4s':
+                audio_path = os.path.join(root, file)
+
+        # 如果两个文件都找到了，退出遍历
+        if video_path and audio_path:
+            break
+
+    # 检查是否找到所需文件
+    if not video_path:
+        print(f"错误: 未找到 video.m4s 文件，请检查目录：{directory}")
         return False
 
-    if len(audio_files) != 1:
-        print(f"错误: 找到 {len(audio_files)} 个 audio.m4s 文件，请确保目录中有且仅有一个 audio.m4s 文件。")
+    if not audio_path:
+        print(f"错误: 未找到 audio.m4s 文件，请检查目录：{directory}")
         return False
-
-    # 获取完整路径
-    video_path = os.path.join(directory, video_files[0])
-    audio_path = os.path.join(directory, audio_files[0])
 
     # 调用 convert 函数进行合并
     return convert(video=video_path, audio=audio_path, output=output)
