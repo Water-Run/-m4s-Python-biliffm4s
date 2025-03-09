@@ -25,8 +25,8 @@ def _ensure_suffix(filename: str, suffix: str) -> str:
     :return: 带正确后缀的文件名
     """
     if not filename.lower().endswith(suffix):
+        print(f'---为文件名{filename}补充了省略的后缀名{suffix}---')
         return filename + suffix
-    print(f'---为文件名{filename}补充了省略的后缀名{suffix}---')
     return filename
 
 
