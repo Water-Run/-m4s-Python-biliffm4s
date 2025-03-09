@@ -8,5 +8,5 @@ r"""
 from .biliffm4s import convert, combine
 
 __all__ = ["convert", "combine"]
-__version__ = "1.1"
+__version__ = "1.5"
 __author__ = "WaterRun"

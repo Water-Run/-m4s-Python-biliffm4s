@@ -1,15 +1,21 @@
 r"""
 :author: WaterRun
-:date: 2025-02-27
+:date: 2025-03-09
 :description: biliffm4s的源码，支持多系统兼容
 :file: biliffm4s.py
-:version: 1.1
+:version: 1.5
 """
 
 import subprocess
 import os
 import platform
 
+
+r"""
+[关于提示]
+------: 信息
+>>><<<: 错误
+"""
 
 def _ensure_suffix(filename: str, suffix: str) -> str:
     r"""
@@ -20,6 +26,7 @@ def _ensure_suffix(filename: str, suffix: str) -> str:
     """
     if not filename.lower().endswith(suffix):
         return filename + suffix
+    print(f'---为文件名{filename}补充了省略的后缀名{suffix}---')
     return filename
 
 
@@ -33,15 +40,11 @@ def _get_ffmpeg_path() -> str:
 
     if system == "windows":  # Windows 系统
         ffmpeg_path = os.path.join(base_dir, "ffmpeg", "win", "ffmpeg.exe")
-    elif system == "linux":  # Linux 系统
-        ffmpeg_path = os.path.join(base_dir, "ffmpeg", "linux", "ffmpeg")
-    elif system == "darwin":  # macOS 系统
-        ffmpeg_path = os.path.join(base_dir, "ffmpeg", "mac", "ffmpeg")
-    else:  # 不支持的系统
-        raise OSError(f"不支持的操作系统: {system}")
+    else:
+        raise OSError(f">>>不支持的操作系统: {system}<<<")
 
     if not os.path.exists(ffmpeg_path):  # 检查文件是否存在
-        raise FileNotFoundError(f"未找到 ffmpeg 可执行文件: {ffmpeg_path}")
+        raise FileNotFoundError(f">>>未找到 ffmpeg 可执行文件: {ffmpeg_path}<<<")
 
     return ffmpeg_path
 
@@ -69,11 +72,11 @@ def convert(video: str = 'video.m4s', audio: str = 'audio.m4s', output: str = 'o
 
         # 检查输入文件是否存在
         if not os.path.exists(video):
-            print(f"错误: 输入视频文件不存在: {video}")
+            print(f">>>输入视频文件不存在: {video}<<<")
             return False
 
         if not os.path.exists(audio):
-            print(f"错误: 输入音频文件不存在: {audio}")
+            print(f">>>输入音频文件不存在: {audio}<<<")
             return False
 
         # 调用 ffmpeg 命令，将音频和视频合并为输出文件
@@ -88,14 +91,14 @@ def convert(video: str = 'video.m4s', audio: str = 'audio.m4s', output: str = 'o
 
         # 检查返回码是否成功
         if result.returncode == 0:
-            print(f"合并成功: {output}")
+            print(f"---合并成功: {output}---")
             return True
         else:
             # 如果失败，打印详细错误信息
-            print(f"合并失败: {result.stderr.decode('utf-8')}")
+            print(f">>>合并失败: {result.stderr.decode('utf-8')}<<<")
             return False
     except Exception as e:
-        print(f"发生异常: {e}")
+        print(f">>>发生异常: {e}<<<")
         return False
 
 
@@ -113,7 +116,7 @@ def combine(directory: str, output: str = 'output.mp4') -> bool:
 
     # 检查目录是否存在
     if not os.path.isdir(directory):
-        print(f"错误: 目录不存在: {directory}")
+        print(f">>>错误: 目录不存在: {directory}<<<")
         return False
 
     # 初始化变量以存储文件路径
@@ -134,11 +137,11 @@ def combine(directory: str, output: str = 'output.mp4') -> bool:
 
     # 检查是否找到所需文件
     if not video_path:
-        print(f"错误: 未找到 video.m4s 文件，请检查目录：{directory}")
+        print(f">>>未找到 video.m4s 文件，请检查目录：{directory}<<<")
         return False
 
     if not audio_path:
-        print(f"错误: 未找到 audio.m4s 文件，请检查目录：{directory}")
+        print(f">>>未找到 audio.m4s 文件，请检查目录：{directory}<<<")
         return False
 
     # 调用 convert 函数进行合并

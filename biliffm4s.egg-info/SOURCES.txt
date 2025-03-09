@@ -6,8 +6,6 @@ biliffm4s.egg-info/PKG-INFO
 biliffm4s.egg-info/SOURCES.txt
 biliffm4s.egg-info/dependency_links.txt
 biliffm4s.egg-info/top_level.txt
-biliffm4s/ffmpeg/linux/ffmpeg
-biliffm4s/ffmpeg/mac/ffmpeg
 biliffm4s/ffmpeg/win/avcodec-59.dll
 biliffm4s/ffmpeg/win/avdevice-59.dll
 biliffm4s/ffmpeg/win/avfilter-8.dll

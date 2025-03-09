@@ -7,10 +7,10 @@ if platform.architecture()[0] != '64bit':
     raise RuntimeError("biliffm4s 仅支持 64 位系统。")
 
 # 检查系统是否支持
-supported_systems = ['Windows', 'Linux', 'Darwin']
+supported_systems = ['Windows']
 current_system = platform.system()
 if current_system not in supported_systems:
-    raise RuntimeError("biliffm4s 仅支持 Windows、Linux 和 macOS 系统。")
+    raise RuntimeError("biliffm4s 仅支持 Windows系统。")
 
 # 动态生成 ffmpeg 文件的路径
 def get_ffmpeg_files():
@@ -23,7 +23,7 @@ def get_ffmpeg_files():
 
 setup(
     name='biliffm4s',
-    version='1.1',
+    version='1.5',
     packages=find_packages(),
     include_package_data=True,
     package_data={

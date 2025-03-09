@@ -1,6 +1,6 @@
 Metadata-Version: 2.2
 Name: biliffm4s
-Version: 1.1
+Version: 1.5
 Summary: biliffm4s: A tool to merge Bilibili cached .m4s files into .mp4
 Home-page: https://github.com/Water-Run/-m4s-Python-biliffm4s
 Author: WaterRun
@@ -34,9 +34,8 @@ Dynamic: summary
 ## 简介  
 
 `biliffm4s`是`bilibili-ffmpeg-m4s(to-mp4)`的缩写.顾名思义,该项目提供了一个Python库,将Android手机哔哩哔哩缓存的视频(为`.m4s`)格式转化为`.mp4`格式.文件转化功能由`ffmpeg`实现,见[github链接](https://github.com/FFmpeg/FFmpeg)    
-项目已经发布在PyPi上.因此,使用`pip install biliffm4s`即可使用.  
-> 注:`Windows`,`Mac OS`和`Linux`的`ffmpeg`已存储在`ffmepg`文件夹下,因此`biliffm4s`是即开即用的  
-> ***警告: `Mac OS`和`Linux`未测试***  
+项目已经发布在PyPi上.因此,使用`pip install biliffm4s`即可使用.`biliffm4s`是即开即用的,不需要安装第三方依赖(如配置`ffmpeg`环境等).    
+> 仅适配Windows 64位平台  
 
 ## 使用  
 
